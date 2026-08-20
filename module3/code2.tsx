@@ -1,5 +1,4 @@
-/*
-TABLE OF CONTENTS
+/* ================================== TABLE OF CONTENTS =================================
 
 1.1 IMPORT SECTION
 1.2 CREATE DATA SECTION
@@ -10,7 +9,8 @@ TABLE OF CONTENTS
     2.4 CREATE FUNCTION TO FETCH ALL CHARACTERS DATA BY ID
     2.5 CREATE FUNCTION TO FETCH ALL ANIME DATA BY CHARACTER'S ID
     2.6 CREATE FUNCTION TO FETCH RATING DATA BY CHARACTER'S ID
-*/
+
+========================================================================================== */
 
 // 1.1 IMPORT SECTION
 import { delay } from "../utils/delay";
