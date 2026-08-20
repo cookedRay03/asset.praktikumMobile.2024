@@ -1,3 +1,4 @@
+// 1.1 IMPORT SECTION
 import React, { useEffect, useState, useCallback } from 'react';
 import {
   View, Text, TextInput, TouchableOpacity, FlatList,
@@ -6,6 +7,7 @@ import {
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/supabase';
 
+// 1.2 INTERFACE / TYPE DEFINITION
 interface Mission {
   id: string;
   title: string;
@@ -15,6 +17,7 @@ interface Mission {
 }
 
 export default function TacticalHQScreen() {
+  // 1.3 COMPONENT & STATE INITIALIZATION
   const { user, signOut } = useAuth();
   const [missions, setMissions] = useState<Mission[]>([]);
   const [loading, setLoading] = useState(true);
@@ -23,6 +26,8 @@ export default function TacticalHQScreen() {
   const [rewardXP, setRewardXP] = useState('150');
   const [submitting, setSubmitting] = useState(false);
 
+  // 1.4 SUPABASE CRUD OPERATIONS
+  // 2.1 READ: FETCH ALL MISSIONS
   const fetchMissions = useCallback(async () => {
     try {
       const { data, error } = await supabase
@@ -49,6 +54,7 @@ export default function TacticalHQScreen() {
     fetchMissions();
   };
 
+  // 2.2 CREATE: INSERT NEW MISSION
   const handleCreateMission = async () => {
     if (!missionTitle.trim()) {
       Alert.alert('Hold Up', 'Please provide an objective title for the mission.');
@@ -78,6 +84,7 @@ export default function TacticalHQScreen() {
     }
   };
 
+  // 2.3 UPDATE: TOGGLE STATUS (OPTIMISTIC UI)
   const handleToggleStatus = async (item: Mission) => {
     const nextStatus = item.status === 'completed' ? 'pending' : 'completed';
     // Optimistic UI Update
@@ -98,6 +105,7 @@ export default function TacticalHQScreen() {
     }
   };
 
+  // 2.4 DELETE: REMOVE MISSION (OPTIMISTIC UI)
   const handleDeleteMission = async (id: string) => {
     setMissions((prev) => prev.filter((m) => m.id !== id));
     try {
@@ -109,6 +117,7 @@ export default function TacticalHQScreen() {
     }
   };
 
+  // 1.5 LIST ITEM RENDER COMPONENT
   const renderMissionItem = ({ item }: { item: Mission }) => {
     const isDone = item.status === 'completed';
     return (
@@ -137,8 +146,10 @@ export default function TacticalHQScreen() {
     );
   };
 
+  // 1.6 MAIN SCREEN RENDER & UI LAYOUT
   return (
     <View style={styles.screenContainer}>
+      {/* 2.5 HEADER SECTION */}
       <View style={styles.header}>
         <View>
           <Text style={styles.headerSub}>COMMAND HQ OPERATIVE ACTIVE</Text>
@@ -151,6 +162,7 @@ export default function TacticalHQScreen() {
         </TouchableOpacity>
       </View>
 
+      {/* 2.6 FORM DISPATCH MISSION SECTION */}
       <View style={styles.formCard}>
         <Text style={styles.formLabel}>DISPATCH NEW MISSION</Text>
         <TextInput
@@ -183,6 +195,7 @@ export default function TacticalHQScreen() {
         </View>
       </View>
 
+      {/* 2.7 ACTIVE MISSION LIST & EMPTY STATE */}
       <View style={styles.listHeaderRow}>
         <Text style={styles.sectionHeading}>ACTIVE MISSIONS</Text>
         <Text style={styles.badgeCount}>{missions.length} QUEUED</Text>
@@ -215,6 +228,7 @@ export default function TacticalHQScreen() {
   );
 }
 
+// 1.7 STYLESHEET SECTION
 const styles = StyleSheet.create({
   screenContainer: { flex: 1, backgroundColor: '#020617', paddingHorizontal: 20, paddingTop: 54 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 },
