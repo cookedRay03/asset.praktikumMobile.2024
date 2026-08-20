@@ -154,10 +154,11 @@ import { Character, Anime,CharacterStatistics } from "../types/character";
         return result; // [4]
     }
 
-/*
-EXPLANATION
+/* ================ EXPLANATION ================
+
 [1]: SIMULATE A DELAY WHEN FETCHING A DATA
 [2]: TAKE THE DATA AND STORE IT IN A VARIABLE
 [3]: IF THE DATA DIDN'T FOUND, GIVE AN ERROR MESSAGE
 [4]: LASTLY, WE RETURN THE DATA TO THE VARIABLE
-*/
+
+================================================*/
