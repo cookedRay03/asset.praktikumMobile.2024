@@ -52,3 +52,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+
+(passTheArrayHere) => (<Text> {passTheArrayHere} </Text>)
