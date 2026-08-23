@@ -5,7 +5,7 @@ import {
 
 import { useRouter } from "expo-router";
 
-import PageButton from "@/components/PageButton";
+import PageButton from "@/components/pageButton";
 import { pageStyles } from "@/styles";
 
 export default function DocsPage() {
