@@ -9,7 +9,7 @@ import {
   useRouter,
 } from "expo-router";
 
-import PageButton from "@/components/pageButton";
+import PageButton from "@/components/PageButton";
 import { pageStyles } from "@/styles";
 
 const pages: Record<
