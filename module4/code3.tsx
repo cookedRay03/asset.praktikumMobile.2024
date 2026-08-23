@@ -1,3 +1,4 @@
+// 1.1 SANITIZE INPUTS & VALIDATION
 const handleAuth = async () => {
   const cleanEmail = email.trim();
   const cleanPassword = password.trim();
@@ -15,8 +16,8 @@ const handleAuth = async () => {
 
   setLoading(true);
   try {
+    // 1.2 SIGN UP WITH USER METADATA
     if (isRegistering) {
-      // Sign Up dengan metadata
       const { error } = await supabase.auth.signUp({
         email: cleanEmail,
         password: cleanPassword,
@@ -35,7 +36,7 @@ const handleAuth = async () => {
         setIsRegistering(false);
       }
     } else {
-      // Sign In
+      // 1.3 SIGN IN OPERATION & ROUTER REDIRECT
       const { error } = await supabase.auth.signInWithPassword({
         email: cleanEmail,
         password: cleanPassword,

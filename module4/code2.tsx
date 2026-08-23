@@ -1,7 +1,9 @@
+// 1.1 IMPORT SECTION
 import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabase";
 
+// 1.2 AUTH CONTEXT INTERFACE
 interface AuthContextType {
   user: User | null;
   session: Session | null;
@@ -9,22 +11,24 @@ interface AuthContextType {
   signOut: () => Promise<void>;
 }
 
+// 1.3 CREATE CONTEXT INSTANCE
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// 1.4 GLOBAL AUTH PROVIDER COMPONENT
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // Rehydrate session saat app dibuka
+    // 2.1 Rehydrate session saat app dibuka
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
       setIsLoading(false);
     });
 
-    // Listen event Auth secara real-time
+    // 2.2 Listen event Auth secara real-time
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
@@ -47,6 +51,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
 }
 
+// 1.5 CUSTOM HOOK: USEAUTH
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {
