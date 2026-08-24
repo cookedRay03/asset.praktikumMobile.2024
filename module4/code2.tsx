@@ -14,22 +14,22 @@ interface AuthContextType {
 // 1.3 CREATE CONTEXT INSTANCE
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// 1.4 GLOBAL AUTH PROVIDER COMPONENT
+// 1.4 GLOBAL AUTH PROVIDER COMPONENT (CODELAB 4 CHALLENGE)
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // 2.1 Rehydrate session saat app dibuka
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // 2.1 Rehydrate existing session from Hardware Vault on app startup
+    supabase.auth./* ??? */().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
       setIsLoading(false);
     });
 
-    // 2.2 Listen event Auth secara real-time
-    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+    // 2.2 Listen to real-time Auth events (LOGIN, LOGOUT, TOKEN_REFRESH)
+    const { data: authListener } = supabase.auth./* ??? */((_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
       setIsLoading(false);
