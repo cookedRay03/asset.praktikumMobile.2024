@@ -29,7 +29,6 @@ export async function completeMissionAndCancelAlert() {
     return;
   }
 
-  // 💡 Hint: Gunakan Notifications.cancelScheduledNotificationAsync(identifier)
   await Notifications./* ??? */(activeReminderId);
 
   activeReminderId = null;
