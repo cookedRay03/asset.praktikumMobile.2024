@@ -46,7 +46,7 @@ export default function RootLayout() {
       const data = response.notification.request.content.data;
       console.log('Notification tapped with data payload:', data);
 
-      // 💡 Hint: Lakukan in-app deep linking ke data.screen
+      // Hint: Lakukan in-app deep linking ke data.screen
       if (data?.screen) {
         router.push(data.screen as any);
       }
