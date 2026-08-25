@@ -11,11 +11,10 @@ export async function scheduleDailyLunchReminder() {
       data: { promoCode: 'TACTICAL99' },
     },
     trigger: {
-      // 💡 Hint: Gunakan SchedulableTriggerInputTypes.DAILY dengan hour, minute, repeats
       type: Notifications.SchedulableTriggerInputTypes./* ??? */,
-      hour: 12,
-      minute: 0,
-      repeats: true,
-    },
+      hour: /* ??? */,
+      minute: /* ??? */,
+      repeats: /* ??? */,
+    } as any,
   });
 }
